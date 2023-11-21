@@ -274,6 +274,16 @@ msgSendBtn.addEventListener("click", function (event) {
   sendData();
 });
 
+// Add a keydown event listener to the document to check for the Enter key
+document.addEventListener('keydown', function (event) {
+  // Check if the pressed key is the Enter key 
+  if (event.key === 'Enter') {
+    // send data 
+    sendData();
+  }
+});
+
+
 window.addEventListener("unload", function (event) {
   if (navigator.userAgent.indexOf("Chrome") != -1) {
     $.ajax({
@@ -372,4 +382,26 @@ $(document).on("click", ".next-chat", function () {
   //   fetchNextUser(remoteUser);
   //   console.log("Moving to next user");
   // }
+});
+
+function reloadPage() {
+  location.reload();
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+  var nextBtn = document.querySelector('.next-chat');
+
+  if (nextBtn) {
+      nextBtn.addEventListener('click', reloadPage);
+  }
+
+  // Add a keydown event listener to the document to check for the Esc key
+  document.addEventListener('keydown', function (event) {
+    // Check if the pressed key is the Esc key (key code 27)
+    if (event.key === 'Escape') {
+      // Reload the current page
+      reloadPage();
+    }
+  });
+
 });
